@@ -1,0 +1,323 @@
+#:import Window kivy.core.window.Window
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+<BG>:
+	orientation: "vertical"
+	Image:
+		id: bg
+		source: 'assets/images/bg.png'
+<Main_Card>:
+    canvas:
+        Color:
+            rgba: (0.576, 0.721, 0.411, 0.25)
+        RoundedRectangle:
+            pos: Window.size[0]*0.0694, Window.size[1]*0.2578
+            size: Window.size[0]*0.861, Window.size[1]*0.4843
+            radius: [22]
+<Button_Card>:
+    button_text: ""
+    canvas:
+        Color:
+            rgba: (0.5764, 0.7215, 0.4117, 0.5)
+        RoundedRectangle:
+            pos: 0, 0
+            size: Window.size[0], Window.size[1]*0.1171
+            radius: [22,22,0,0]
+    Label:
+        text: root.button_text
+        markup: True
+        pos_hint: {'center_x': 0.5, 'center_y':0.0585}
+        size_hint_x: None
+        font_name: "Marvel-Bold"
+        color: (0.337, 0.564, 0.58, 0.5)
+        font_size: Window.size[0]*0.133
+<Lose_Screen>:
+    BG:
+    FloatLayout:
+        orientation: "vertical"
+        Main_Card:
+        Button_Card:
+            button_text: "BACK"
+        Label:
+            text: "Tic - Tac - Toe"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.882}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.917, 0.929, 0.901, 0.75)
+            font_size: Window.size[0]*0.133
+        Label:
+            text: "YOU LOST!"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.5}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.337, 0.564, 0.58, 1)
+            font_size: Window.size[0]*0.2
+<Win_Screen>:
+    BG:
+    FloatLayout:
+        orientation: "vertical"
+        Main_Card:
+        Button_Card:
+            button_text: "BACK"
+        Label:
+            text: "Tic - Tac - Toe"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.882}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.917, 0.929, 0.901, 0.75)
+            font_size: Window.size[0]*0.133
+        Label:
+            text: "YOU WON!"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.5}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.337, 0.564, 0.58, 1)
+            font_size: Window.size[0]*0.2
+<Tie_Screen>:
+    BG:
+    FloatLayout:
+        orientation: "vertical"
+        Main_Card:
+        Button_Card:
+            button_text: "BACK"
+        Label:
+            text: "Tic - Tac - Toe"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.882}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.917, 0.929, 0.901, 0.75)
+            font_size: Window.size[0]*0.133
+        Label:
+            text: "GAME TIED!"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.5}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.337, 0.564, 0.58, 1)
+            font_size: Window.size[0]*0.2
+<Main_Screen>:
+    float_layout: float_layout
+    x_1: x_1
+    x_2: x_2
+    x_3: x_3
+    x_4: x_4
+    x_5: x_5
+    x_6: x_6
+    x_7: x_7
+    x_8: x_8
+    x_9: x_9
+    o_1: o_1
+    o_2: o_2
+    o_3: o_3
+    o_4: o_4
+    o_5: o_5
+    o_6: o_6
+    o_7: o_7
+    o_8: o_8
+    o_9: o_9
+    BG:
+    FloatLayout:
+        id: float_layout
+        orientation: "vertical"
+        Main_Card:
+        Button_Card:
+            button_text: "RESET"
+        Label:
+            text: "Tic - Tac - Toe"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.882}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.917, 0.929, 0.901, 0.75)
+            font_size: Window.size[0]*0.133
+        Image:
+            id: grid
+            source: 'assets/images/grid.png'
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            size_hint_x: None
+            width: Window.size[0]*0.8
+            height: Window.size[1]*0.8
+            pos:   Window.size[0]*0.1, Window.size[1]*0.1
+
+
+        Image:
+            id: x_1
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.25, 'center_y': 0.64}
+            opacity: 1 if app.board[1]== "X" else 0
+        Image:
+            id: x_2
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.5, 'center_y': 0.64}
+            opacity: 1 if app.board[2]== "X" else 0
+        Image:
+            id: x_3
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.75, 'center_y': 0.64}
+            opacity: 1 if app.board[3]== "X" else 0
+
+
+        Image:
+            id: x_4
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.25, 'center_y': 0.5}
+            opacity: 1 if app.board[4]== "X" else 0
+        Image:
+            id: x_5
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.5, 'center_y': 0.5}
+            opacity: 1 if app.board[5]== "X" else 0
+        Image:
+            id: x_6
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.75, 'center_y': 0.5}
+            opacity: 1 if app.board[6]== "X" else 0
+
+
+        Image:
+            id: x_7
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.25, 'center_y': 0.36}
+            opacity: 1 if app.board[7]== "X" else 0
+        Image:
+            id: x_8
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.5, 'center_y': 0.36}
+            opacity: 1 if app.board[8]== "X" else 0
+        Image:
+            id: x_9
+            source: 'assets/images/x.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.75, 'center_y': 0.36}
+            opacity: 1 if app.board[9]== "X" else 0
+
+        Image:
+            id: o_1
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.25, 'center_y': 0.64}
+            opacity: 1 if app.board[1]== "O" else 0
+        Image:
+            id: o_2
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.5, 'center_y': 0.64}
+            opacity: 1 if app.board[2]== "O" else 0
+        Image:
+            id: o_3
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.75, 'center_y': 0.64}
+            opacity: 1 if app.board[3]== "O" else 0
+
+
+        Image:
+            id: o_4
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.25, 'center_y': 0.5}
+            opacity: 1 if app.board[4]== "O" else 0
+        Image:
+            id: o_5
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.5, 'center_y': 0.5}
+            opacity: 1 if app.board[5]== "O" else 0
+        Image:
+            id: o_6
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.75, 'center_y': 0.5}
+            opacity: 1 if app.board[6]== "O" else 0
+
+
+        Image:
+            id: o_7
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.25, 'center_y': 0.36}
+            opacity: 1 if app.board[7]== "O" else 0
+        Image:
+            id: o_8
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.5, 'center_y': 0.36}
+            opacity: 1 if app.board[8]== "O" else 0
+        Image:
+            id: o_9
+            source: 'assets/images/o.png'
+            size_hint_x: None
+            width: Window.size[0]*0.2
+            pos_hint: {'center_x':0.75, 'center_y': 0.36}
+            opacity: 1 if app.board[9]== "O" else 0
+
+<Intro_Screen>:
+    BG:
+    FloatLayout:
+        orientation: "vertical"
+        Main_Card:
+        Button_Card:
+            button_text: "START!"
+        Label:
+            text: "Tic-Tac-Toe"
+            markup: True
+            pos_hint: {'center_x': 0.5, 'center_y':0.5}
+            size_hint_x: None
+            font_name: "Marvel-Bold"
+            color: (0.337, 0.564, 0.58, 1)
+            font_size: Window.size[0]*0.2
+<Main_Manager>:
+    id: screen_manager
+    transition: FadeTransition(duration=.1)
+    Intro_Screen:
+        id: lose_screen
+        manager: screen_manager
+        name: "intro"
+    Main_Screen:
+        id: main_screen
+        manager: screen_manager
+        name: "main"
+    Win_Screen:
+        id: win_screen
+        manager: screen_manager
+        name: "win"
+    Lose_Screen:
+        id: lose_screen
+        manager: screen_manager
+        name: "lose"
+    Tie_Screen:
+        id: lose_screen
+        manager: screen_manager
+        name: "tie"
+Main_Manager:
