@@ -1,0 +1,48 @@
+name: Publish teek-tak-toh 🐍 apk 📦 to Google Play
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  # Build job. Builds app for Android with Buildozer
+  deploy:
+    name: Build for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: ${{ steps.buildozer.outputs.filename }}
+
+      # - name: Sign Release
+      #   uses: r0adkll/sign-android-release@v1
+      #   with:
+      #     releaseDirectory: app/build/outputs/bundle/release
+      #     signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+      #     alias: ${{ secrets.ALIAS }}
+      #     keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+      #     keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Create service_account.json
+        run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
+
+      - name: Deploy
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: service_account.json
+          packageName: tictactoe
+          releaseFile: ${{ steps.buildozer.outputs.filename }} # bin/tictactoe.apk
+          # track: alpha
+          # whatsNewDirectory: distribution/
