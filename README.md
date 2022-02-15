@@ -1,4 +1,5 @@
-# TicTacToe ![Production workflow](https://github.com/bjornaer/tic-tac-toe/actions/workflows/test.yaml/badge.svg?branch=main)](https://github.com/bjornaer/tic-tac-toe/actions/workflows/test.yaml)![Size](https://img.shields.io/github/repo-size/bjornaer/tic-tac-toe) ![Downloads](https://play.google.com/)
+# TicTacToe
+[![Production workflow](https://github.com/bjornaer/tic-tac-toe/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/bjornaer/tic-tac-toe/actions/workflows/test.yml)  ![Size](https://img.shields.io/github/repo-size/bjornaer/tic-tac-toe)
 # tic-tac-toe
 phone game
 
